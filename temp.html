@@ -12,10 +12,14 @@
 		<input type="date" id="dateID">
 		<button type="submit">CHECK</button>
 	</form>
-<p id="dayLeft"></p>
-<p id="age"></p>
 
 
-	<script src="./app.js"></script>
+<script>
+	let dateFunction = () => {
+	const userDate = document.querySelector('#dateID').value;
+	// const userDate = new Date(document.querySelector('#dateID').value);
+	console.log(userDate);
+}
+</script>
 </body>
 </html>
