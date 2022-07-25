@@ -2,23 +2,30 @@ let dateFunction = () => {
 
 	const today = new Date();
 
-	const todayMonth= today.getMonth();
-	const todayDate= today.getDate();
-	console.log(todayMonth)
-	console.log(todayDate)
-	
+	const todayMili = today.getTime();
+	// console.log(todayMili);
+	// const todayMonth= today.getMonth();
+	// const todayDate= today.getDate();
+	// console.log(todayMonth)
+	// console.log(todayDate)
+
 
 	// const userDate = document.querySelector('#dateID').value;
-	
+
 	const userDate = new Date(document.querySelector('#dateID').value);
+
+
+	
+
+
 	if (userDate == null || userDate == "Invalid Date") {
 		alert("Enter a date!");
 		return;
 	}
-	const userDateMonth= userDate.getMonth();
-	const userDateDate= userDate.getDate();
-	console.log(userDateMonth)
-	console.log(userDateDate)
+	// const userDateMonth= userDate.getMonth();
+	// const userDateDate= userDate.getDate();
+	// console.log(userDateMonth)
+	// console.log(userDateDate)
 
 	// if(todayMonth==userDateMonth&&todayDate==userDateDate){
 	// 	alert("Happy Birthday")
@@ -31,7 +38,7 @@ let dateFunction = () => {
 	let age = today - userDate;
 
 
-	
+
 	// const age1 = today.getFullYear() - userDate.getFullYear();
 	//     7                 3 or 10
 	// if (today.getMonth() > userDate.getMonth()) {
@@ -57,7 +64,7 @@ let dateFunction = () => {
 	// console.log(age)
 
 
-	
+
 	//converting milisecond into...
 	let second = Math.floor(age / 1000);
 	let minute = Math.floor(second / 60);
@@ -73,9 +80,36 @@ let dateFunction = () => {
 	//https://gist.github.com/PantheraRed/2e65c48cdfa6fba49473913300cc8b12
 
 	const birthday = `You are ${ageYear} Years, ${ageMonth} Months and ${ageDay} Days Old !`;
+	document.querySelector('#age').innerHTML = birthday;
 	// console.log(birthday)
 	// console.log(year, month, day, hour, minute)
 
 	//calculation days left to next birthday
+
+
+	const userDateMili = userDate.getTime();
+	console.log(userDateMili);
+
+
+
+
+
+
+	// let daysLeft = 0;
+	// let daysLeftMonth = 0;
+
+	// if (todayMonth < userDateMonth) {
+	// 	daysLeftMonth = userDateMonth - todayMonth;
+	// }
+	// if (todayMonth > userDateMonth) {
+	// 	daysLeftMonth = 12 - todayMonth + userDateMonth;
+	// }
+	// if (todayMonth == userDateMonth) {
+	// 	daysLeftMonth = userDateDate - todayDate;
+	// }
+	// if (todayDate < userDateDate) {
+	// 	daysLeft = userDateDate - todayDate;
+	// }
+
 
 } 
