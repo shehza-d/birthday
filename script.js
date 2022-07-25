@@ -1,115 +1,99 @@
+const miliSecInYear = 31557600000;
+const miliSecondInMonth = 2629800000
+const miliSecondInDay = 86400000
+
+let intervalId1 = undefined;
+let intervalId2 = undefined;
+
 let dateFunction = () => {
 
-	const today = new Date();
+	// Calculating when is the next birthday
+	if (intervalId1 !== undefined) clearInterval(intervalId1)
+	getTimeLeft()
+	intervalId1 = setInterval(() => {
+		getTimeLeft()
+	}, 1000);
 
-	const todayMili = today.getTime();
-	// console.log(todayMili);
-	// const todayMonth= today.getMonth();
-	// const todayDate= today.getDate();
-	// console.log(todayMonth)
-	// console.log(todayDate)
+	// calculating how old is a person
+	if (intervalId2 !== undefined) clearInterval(intervalId2)
+	yearOld()
+	intervalId2 = setInterval(() => {
+		yearOld()
+	}, 1000);
+}
 
+let getTimeLeft = () => {
 
-	// const userDate = document.querySelector('#dateID').value;
+	let today = new Date();
+	// console.log("today: ", today);
 
-	const userDate = new Date(document.querySelector('#dateID').value);
+	const dateEntered = new Date(document.querySelector("#dateID").value + " 00:00:00");
+	// console.log("enterd date: ", dateEntered);
 
-
-	
-
-
-	if (userDate == null || userDate == "Invalid Date") {
-		alert("Enter a date!");
-		return;
-	}
-	// const userDateMonth= userDate.getMonth();
-	// const userDateDate= userDate.getDate();
-	// console.log(userDateMonth)
-	// console.log(userDateDate)
-
-	// if(todayMonth==userDateMonth&&todayDate==userDateDate){
-	// 	alert("Happy Birthday")
-	// }
-	// console.log(userDate)
-	// console.log(typeof (userDate))
-	// let userYear = Number(userDate.slice(0, -6));
-	// console.log(userYear)
-
-	let age = today - userDate;
+	let birthdayDateThisYear = dateEntered; // 20-4-1994
+	birthdayDateThisYear.setFullYear(today.getFullYear()); // 20-4-2022
 
 
-
-	// const age1 = today.getFullYear() - userDate.getFullYear();
-	//     7                 3 or 10
-	// if (today.getMonth() > userDate.getMonth()) {
-	// 	console.log(`if running`)
-	// 	let ageMonth = today.getMonth() - userDate.getMonth();
-	// } else {
-	// 	console.log(`else running`)
-	// 	let ageMonth = userDate.getMonth() - today.getMonth() ;
-	// }
-	// console.log(age)
-	// console.log(ageMonth)
-
-	// const birthday = `You are ${age} Years, ${ageMonth} and ${ageDay} Old !`;
-
-	if (userDate > today) {
-		alert("Age can't be greater then current Date!");
-		return;
+	if (today.getMonth() > dateEntered.getMonth()) {
+		// birthday month is already passed
+		birthdayDateThisYear.setFullYear(birthdayDateThisYear.getFullYear() + 1) // 20-04-2023
 	}
 
-	// console.log(today.getDate())
+	let nextBirthdayDiffInMili = birthdayDateThisYear - today;
 
-	// let age = today.getFullYear()-userDate;
-	// console.log(age)
+	let nextBirthdayInDays = Math.floor(nextBirthdayDiffInMili / miliSecondInDay);
+	let nextBirthdayInDaysReminder = nextBirthdayDiffInMili % miliSecondInDay
 
+	let nextBirthdayInHours = Math.floor(nextBirthdayInDaysReminder / (1000 * 60 * 60));
+	let nextBirthdayInHoursReminder = nextBirthdayInDaysReminder % (1000 * 60 * 60);
 
+	let nextBirthdayInMinutes = Math.floor(nextBirthdayInHoursReminder / (1000 * 60));
+	let nextBirthdayInMinutesReminder = nextBirthdayInHoursReminder % (1000 * 60);
 
-	//converting milisecond into...
-	let second = Math.floor(age / 1000);
-	let minute = Math.floor(second / 60);
-	second = second % 60;
-	let hour = Math.floor(minute / 60);
-	minute = minute % 60;
-	let ageDay = Math.floor(hour / 24);
-	hour = hour % 24;
-	let ageMonth = Math.floor(ageDay / 30);
-	ageDay = ageDay % 30;
-	let ageYear = Math.floor(ageMonth / 12);
-	ageMonth = ageMonth % 12;
-	//https://gist.github.com/PantheraRed/2e65c48cdfa6fba49473913300cc8b12
-
-	const birthday = `You are ${ageYear} Years, ${ageMonth} Months and ${ageDay} Days Old !`;
-	document.querySelector('#age').innerHTML = birthday;
-	// console.log(birthday)
-	// console.log(year, month, day, hour, minute)
-
-	//calculation days left to next birthday
+	let nextBirthdayInSeconds = Math.floor(nextBirthdayInMinutesReminder / 1000);
 
 
-	const userDateMili = userDate.getTime();
-	console.log(userDateMili);
+	// console.log(`${nextBirthdayInDays} days, ${nextBirthdayInHours} hours, ${nextBirthdayInMinutes} minutes and ${nextBirthdayInSeconds} seconds left in your next birthday`);
 
 
+	// document.querySelector("#visible").removeAttribute("class")
 
+	document.querySelector("#day").innerHTML = nextBirthdayInDays;
+	document.querySelector("#hour").innerHTML = nextBirthdayInHours;
+	document.querySelector("#minute").innerHTML = nextBirthdayInMinutes;
+	document.querySelector("#second").innerHTML = nextBirthdayInSeconds;
 
+	// increment
+	birthdayDateThisYear.setSeconds(birthdayDateThisYear.getSeconds() - 1);
+}
 
+let yearOld = () => {
+	let today = new Date();
+	const dateEntered = new Date(document.querySelector("#dateID").value + " 00:00:00");
 
-	// let daysLeft = 0;
-	// let daysLeftMonth = 0;
+	let diffInMili = today - dateEntered;
+	// console.log("diffInMili: ", diffInMili);
 
-	// if (todayMonth < userDateMonth) {
-	// 	daysLeftMonth = userDateMonth - todayMonth;
-	// }
-	// if (todayMonth > userDateMonth) {
-	// 	daysLeftMonth = 12 - todayMonth + userDateMonth;
-	// }
-	// if (todayMonth == userDateMonth) {
-	// 	daysLeftMonth = userDateDate - todayDate;
-	// }
-	// if (todayDate < userDateDate) {
-	// 	daysLeft = userDateDate - todayDate;
-	// }
+	let ageInYear = Math.floor(diffInMili / miliSecInYear);
+	let reminderOfYearAge = diffInMili % miliSecInYear;
 
+	let ageInMonth = Math.floor(reminderOfYearAge / miliSecondInMonth);
+	let reminderOfMonthAge = reminderOfYearAge % miliSecondInMonth;
 
-} 
+	let ageInDay = Math.floor(reminderOfMonthAge / miliSecondInDay);
+	let ageInDayReminder = reminderOfMonthAge % miliSecondInDay;
+
+	let ageInHour = Math.floor(ageInDayReminder / (1000 * 60 * 60));
+	let ageInHourReminder = ageInDayReminder % (1000 * 60 * 60);
+
+	let ageInMinute = Math.floor(ageInHourReminder / (1000 * 60));
+	let ageInMinuteReminder = ageInHourReminder % (1000 * 60);
+
+	let ageInSecond = Math.floor(ageInMinuteReminder / 1000);
+
+	document.querySelector("#age").innerHTML = `You are ${ageInYear} years, ${ageInMonth} month, ${ageInDay} days, ${ageInHour} hour, ${ageInMinute} minutes and ${ageInSecond} seconds old`;
+	// console.log(`you are ${ageInYear} years, ${ageInMonth} month, ${ageInDay} days, ${ageInHour} hour, ${ageInMinute} minutes and ${ageInSecond} seconds old`);
+}
+// you are 28 years, 3 month and 5
+// days, 11 hour, 9 minutes
+// and 6 seconds old
