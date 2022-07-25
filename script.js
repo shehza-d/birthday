@@ -6,6 +6,29 @@ let intervalId1 = undefined;
 let intervalId2 = undefined;
 
 let dateFunction = () => {
+	let today = new Date();
+	let dateEntered = new Date(document.querySelector("#dateID").value);
+
+//some valations for empty input	
+if (dateEntered=="" || dateEntered=="Invalid Date") {
+	alert("Enter a date!");
+	return;
+}
+//validation if user enters a birth-date of future
+if (dateEntered > today) {
+	alert("Age can't be greater then current Date!");
+	return;
+}
+
+//if you have your Birthday Today
+    	// if(todayMonth==userDateMonth&&todayDate==userDateDate){
+		// 	alert("Happy Birthday")
+		// }
+
+
+
+
+
 
 	// Calculating when is the next birthday
 	if (intervalId1 !== undefined) clearInterval(intervalId1)
@@ -54,9 +77,6 @@ let getTimeLeft = () => {
 
 
 	// console.log(`${nextBirthdayInDays} days, ${nextBirthdayInHours} hours, ${nextBirthdayInMinutes} minutes and ${nextBirthdayInSeconds} seconds left in your next birthday`);
-
-
-	// document.querySelector("#visible").removeAttribute("class")
 
 	document.querySelector("#day").innerHTML = nextBirthdayInDays;
 	document.querySelector("#hour").innerHTML = nextBirthdayInHours;
