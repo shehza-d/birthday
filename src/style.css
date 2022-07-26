@@ -1,0 +1,73 @@
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-size: cover;
+	background-position: center;
+}
+
+main {
+	/* border: 4px solid red; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 55%;
+	height: 350px;
+	border-radius: 20px;
+	background: rgba(0, 0, 0, 0.3);
+	box-shadow: 2px 5px 30px 1px #1b1b1b;
+	backdrop-filter: blur(10px);
+}
+
+/* @media screen and (min-width: 750px) {
+	main {
+		width: 85%;
+	}
+  } */
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	/* width: 100%; */
+	/* height: 100%; */
+}
+
+form>input {
+	width: 100%;
+	height: 40px;
+	border-radius: 20px;
+	border: 1px solid #1b1b1b;
+	padding: 0 10px;
+	margin-bottom: 10px;
+
+}
+
+form>button {
+	width: 100%;
+	height: 40px;
+	border-radius: 20px;
+	border: 1px solid #1b1b1b;
+	color: #1b1b1b;
+	background-color: white;
+	font-size: 1.2rem;
+	/* font-weight: bold; */
+	cursor: pointer;
+}
+
+.timer {
+	display: flex;
+	flex-direction: row;
+}
+
+.timer>div {
+	padding-left: 5px;
+}
+
+
+
+body {
+	background-image: url('https://source.unsplash.com/1600x900/?birthday');
+}
