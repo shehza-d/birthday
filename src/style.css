@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 body {
 	display: flex;
 	justify-content: center;
@@ -5,10 +7,10 @@ body {
 	height: 100vh;
 	background-size: cover;
 	background-position: center;
+	font-family: 'Roboto', sans-serif;
 }
 
 main {
-	/* border: 4px solid red; */
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -20,89 +22,103 @@ main {
 	box-shadow: 2px 5px 30px 1px #1b1b1b;
 	backdrop-filter: blur(10px);
 	padding: 20px;
-
+	transform-style: preserve-3d;
+	perspective: 1000px;
 }
-
-/* @media screen and (min-width: 650px) { */
-@media (max-device-width:650px) {
-	main {
-		width: 85%;
-		height: 80%;
-	}
-}
-
-
 
 form {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	/* width: 100%; */
-	/* height: 100%; */
-	
+	transform: translateZ(20px);
 }
 
 form>input {
-	width: 100%;
+	width: 300px;
 	height: 40px;
 	border-radius: 20px;
 	border: 1px solid #0f0f0f;
 	padding: 0 10px;
 	margin-bottom: 10px;
-
+	transform: translateZ(20px);
 }
-.title{
+
+.title {
 	color: rgb(0, 0, 0);
 	/* -webkit-text-stroke: 1px rgb(255, 255, 255); */
+	transform: translateZ(30px);
 
 }
+
 form>button {
 	width: 100%;
 	height: 40px;
 	border-radius: 20px;
 	border: 1px solid #1f1f1f;
-
-	/* color: #1b1b1b;
-	background-color: white; */
 	font-size: 1.2rem;
-	/* font-weight: bold; */
 	cursor: pointer;
+	transform: translateZ(20px);
 }
 
 #age {
 	padding: 0 10px;
-	margin-bottom: 10px;
-	/* -webkit-text-stroke:1px rgb(255, 255, 255); */
+	margin-bottom: 20px;
+	transform: translateZ(20px);
 }
 
 .timer {
 	display: flex;
 	flex-direction: row;
+	transform: translateZ(20px);
 }
 
 .timer>div {
 	padding-left: 5px;
+	transform: translateZ(20px);
 }
-.js-tilt-glare{
+
+#daysLeft {
+	display: inline-block;
+
+}
+
+.js-tilt-glare {
 	border-radius: 20px;
 }
 
+/* @media screen and (min-width: 650px) { */
+	@media (max-device-width:650px) {
+		main {
+			width: 85%;
+			height: 75%;
+		}
+		form>input {
+			width: 200px;
+		}
+		form>button {
+			width: 200px;
+		}
+	}
+	
 @media (prefers-color-scheme: dark) {
 	main {
 		background: rgba(0, 0, 0, 0.3);
 	}
+
 	form>input {
 		background: #1b1b1b;
 		color: #fff;
 		border: 1px solid #fcfcfc;
 	}
+
 	form>button {
 		background: #1b1b1b;
 		color: #fff;
 		border: 1px solid #f3f3f3;
 	}
 }
+
 body {
 	background-image: url('https://source.unsplash.com/1600x900/?birthday');
 }

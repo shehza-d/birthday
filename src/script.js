@@ -7,28 +7,25 @@ let intervalId2 = undefined;
 
 let dateFunction = () => {
 	let today = new Date();
-	let dateEntered = new Date(document.querySelector("#dateID").value);
-
-//some valations for empty input	
-if (dateEntered=="" || dateEntered=="Invalid Date") {
-	alert("Enter a date!");
-	return;
-}
-//validation if user enters a birth-date of future
-if (dateEntered > today) {
-	alert("Age can't be greater then current Date!");
-	return;
-}
-
-//if you have your Birthday Today
-    	// if(todayMonth==userDateMonth&&todayDate==userDateDate){
-		// 	alert("Happy Birthday")
-		// }
+	let dateEntered = new Date(document.querySelector("#dateID").value);	
 
 
+	//some valations for empty input	
+	if (dateEntered == "" || dateEntered == "Invalid Date") {
+		alert("Enter a date!");
+		return;
+	}
+	//validation if user enters a birth-date of future
+	if (dateEntered > today) {
+		alert("Age can't be greater then current Date!");
+		return;
+	}
 
-
-
+	//if you have your Birthday Today
+	if (today.getMonth() == dateEntered.getMonth() && today.getDate() == dateEntered.getDate()) {
+		// document.querySelector("#daysLeft").innerHTML = `Happy Birthday!`;
+		alert(`Happy Birthday!`);
+	}
 
 	// Calculating when is the next birthday
 	if (intervalId1 !== undefined) clearInterval(intervalId1)
@@ -48,10 +45,8 @@ if (dateEntered > today) {
 let getTimeLeft = () => {
 
 	let today = new Date();
-	// console.log("today: ", today);
 
 	const dateEntered = new Date(document.querySelector("#dateID").value + " 00:00:00");
-	// console.log("enterd date: ", dateEntered);
 
 	let birthdayDateThisYear = dateEntered; // 20-4-1994
 	birthdayDateThisYear.setFullYear(today.getFullYear()); // 20-4-2022
@@ -75,13 +70,11 @@ let getTimeLeft = () => {
 
 	let nextBirthdayInSeconds = Math.floor(nextBirthdayInMinutesReminder / 1000);
 
-
-	// console.log(`${nextBirthdayInDays} days, ${nextBirthdayInHours} hours, ${nextBirthdayInMinutes} minutes and ${nextBirthdayInSeconds} seconds left in your next birthday`);
-
-	document.querySelector("#day").innerHTML = nextBirthdayInDays;
-	document.querySelector("#hour").innerHTML = nextBirthdayInHours;
-	document.querySelector("#minute").innerHTML = nextBirthdayInMinutes;
-	document.querySelector("#second").innerHTML = nextBirthdayInSeconds;
+	document.querySelector("#daysLeft").innerHTML = `Your Next Birthday is in ` + "<br>";
+	document.querySelector("#day").innerHTML = nextBirthdayInDays + " D";
+	document.querySelector("#hour").innerHTML = nextBirthdayInHours + " H";
+	document.querySelector("#minute").innerHTML = nextBirthdayInMinutes + " M";
+	document.querySelector("#second").innerHTML = nextBirthdayInSeconds + " S";
 
 	// increment
 	birthdayDateThisYear.setSeconds(birthdayDateThisYear.getSeconds() - 1);
@@ -92,7 +85,6 @@ let yearOld = () => {
 	const dateEntered = new Date(document.querySelector("#dateID").value + " 00:00:00");
 
 	let diffInMili = today - dateEntered;
-	// console.log("diffInMili: ", diffInMili);
 
 	let ageInYear = Math.floor(diffInMili / miliSecInYear);
 	let reminderOfYearAge = diffInMili % miliSecInYear;
@@ -111,9 +103,5 @@ let yearOld = () => {
 
 	let ageInSecond = Math.floor(ageInMinuteReminder / 1000);
 
-	document.querySelector("#age").innerHTML = `You are ${ageInYear} years, ${ageInMonth} month, ${ageInDay} days, ${ageInHour} hour, ${ageInMinute} minutes and ${ageInSecond} seconds old`;
-	// console.log(`you are ${ageInYear} years, ${ageInMonth} month, ${ageInDay} days, ${ageInHour} hour, ${ageInMinute} minutes and ${ageInSecond} seconds old`);
+	document.querySelector("#age").innerHTML = `You are now ${ageInYear} years, ${ageInMonth} month, ${ageInDay} days, ${ageInHour} hour, ${ageInMinute} minutes and ${ageInSecond} seconds old`;
 }
-// you are 28 years, 3 month and 5
-// days, 11 hour, 9 minutes
-// and 6 seconds old

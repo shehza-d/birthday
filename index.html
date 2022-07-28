@@ -5,35 +5,37 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="./fav.png" type="image/x-icon">
+	<link rel="shortcut icon" href="./img/fav.png" type="image/x-icon">
 	<title>Birthday Countdown</title>
 	<link rel="stylesheet" href="./src/style.css">
-	
 	<!-- <link rel="stylesheet" href="./src/mobileStyle.css" media="(max-device-width:650px)"> -->
 </head>
 
 <body>
 	<main data-tilt data-tilt-glare data-tilt-max-glare="0.2">
+
 		<h2 class="title">Age Checker and Birthday Countdown</h2>
+		
 		<form onsubmit="dateFunction(); return false" class="form">
-			<input type="date" id="dateID" value="2003-03-13">
+			<input type="date" id="dateID" placeholder="Enter your Birthday" value="2003-03-13">
 			<button type="submit">CHECK</button>
 		</form>
 
 		<p id="age"></p>
 
-		<div class="timer">
-			<div id="day"></div>
-			<div id="hour"></div>
-			<div id="minute"></div>
-			<div id="second"></div>
+		<div>
+			<div id="daysLeft"></div>
+			<div class="timer">
+				<div id="day"></div>
+				<div id="hour"></div>
+				<div id="minute"></div>
+				<div id="second"></div>
+			</div>
 		</div>
 
-		<!-- <p id="dayLeft"></p> -->
 	</main>
 
 </body>
 <script src="./src/script.js"></script>
 <script src="./src/vanilla-tilt.js"></script>
-
 </html>
